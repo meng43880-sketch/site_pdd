@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ПДД 2026 — перестань зубрить, начни понимать</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mark ПДД 2026 — перестань зубрить, начни понимать</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
@@ -16,88 +16,164 @@
       color: #f0f0f0;
       line-height: 1.5;
       padding-bottom: 80px;
+      overflow-x: hidden;
     }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* navbar */
+    /* ===== NAVBAR ===== */
     .navbar {
-      background: rgba(11, 11, 11, 0.96);
-      padding: 16px 0;
+      background: rgba(11, 11, 11, 0.97);
+      padding: 12px 0;
       border-bottom: 2px solid #facc15;
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(6px);
+      z-index: 1000;
+      backdrop-filter: blur(8px);
     }
     .navbar .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       gap: 12px;
     }
+    /* бургер */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 1001;
+    }
+    .burger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #facc15;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    .burger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .burger.active span:nth-child(2) { opacity: 0; }
+    .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
     .logo {
       font-weight: 900;
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       letter-spacing: -0.02em;
       color: #facc15;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
     }
-    .logo span {
+    .logo .emoji {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .logo .mark-text {
+      color: #facc15;
+      font-weight: 900;
+    }
+    .logo .pdd-text {
+      color: #f0f0f0;
+      font-weight: 800;
+    }
+    .logo .year {
       background: #facc15;
       color: #0b0b0b;
-      font-size: 0.7rem;
-      padding: 2px 12px;
+      font-size: 0.6rem;
+      padding: 2px 10px;
       border-radius: 30px;
       font-weight: 700;
+      margin-left: 4px;
     }
+
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px 18px;
+      gap: 6px 16px;
     }
     .nav-links a {
       color: #e0e0e0;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: 0.2s;
       border-bottom: 2px solid transparent;
       padding-bottom: 4px;
+      white-space: nowrap;
     }
     .nav-links a:hover { color: #facc15; border-bottom-color: #facc15; }
+
+    /* мобильное меню */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(11, 11, 11, 0.98);
+      padding: 80px 30px 30px;
+      z-index: 999;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+      backdrop-filter: blur(12px);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+      padding: 12px 0;
+      border-bottom: 1px solid #222;
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover { color: #facc15; padding-left: 8px; }
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 2.2rem;
+      color: #facc15;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
     /* typography */
     .tag {
       background: #facc15;
       color: #0b0b0b;
       font-weight: 800;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.6px;
-      padding: 6px 18px;
+      padding: 6px 16px;
       border-radius: 40px;
       display: inline-block;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       text-transform: uppercase;
     }
     h1 {
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
       font-weight: 900;
       line-height: 1.08;
       letter-spacing: -0.03em;
     }
     h2 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-size: clamp(1.7rem, 4.5vw, 2.8rem);
       font-weight: 800;
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       letter-spacing: -0.02em;
     }
     h2 .highlight { color: #facc15; }
     .subhead {
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       color: #b0b0b0;
       max-width: 640px;
       font-weight: 400;
@@ -107,15 +183,16 @@
       background: #facc15;
       color: #0b0b0b;
       font-weight: 800;
-      padding: 16px 44px;
+      padding: 16px 36px;
       border-radius: 60px;
       border: none;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.2s;
       box-shadow: 0 8px 28px rgba(250, 204, 21, 0.25);
       display: inline-block;
       text-decoration: none;
+      text-align: center;
     }
     .btn-primary:hover {
       background: #fde047;
@@ -127,32 +204,33 @@
       border: 2px solid #facc15;
       color: #facc15;
       font-weight: 700;
-      padding: 14px 34px;
+      padding: 14px 30px;
       border-radius: 60px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
       transition: 0.2s;
       display: inline-block;
       text-decoration: none;
+      text-align: center;
     }
     .btn-outline:hover { background: #facc15; color: #0b0b0b; transform: scale(1.03); }
 
     section {
-      padding: 70px 0;
+      padding: 50px 0;
       border-bottom: 1px solid #1f1f1f;
       opacity: 0;
-      transform: translateY(40px);
-      animation: fadeUp 0.8s ease forwards;
+      transform: translateY(30px);
+      animation: fadeUp 0.7s ease forwards;
     }
-    section:nth-child(2) { animation-delay: 0.1s; }
-    section:nth-child(3) { animation-delay: 0.2s; }
-    section:nth-child(4) { animation-delay: 0.3s; }
-    section:nth-child(5) { animation-delay: 0.4s; }
-    section:nth-child(6) { animation-delay: 0.5s; }
-    section:nth-child(7) { animation-delay: 0.6s; }
-    section:nth-child(8) { animation-delay: 0.7s; }
-    section:nth-child(9) { animation-delay: 0.8s; }
-    section:nth-child(10) { animation-delay: 0.9s; }
+    section:nth-child(2) { animation-delay: 0.05s; }
+    section:nth-child(3) { animation-delay: 0.1s; }
+    section:nth-child(4) { animation-delay: 0.15s; }
+    section:nth-child(5) { animation-delay: 0.2s; }
+    section:nth-child(6) { animation-delay: 0.25s; }
+    section:nth-child(7) { animation-delay: 0.3s; }
+    section:nth-child(8) { animation-delay: 0.35s; }
+    section:nth-child(9) { animation-delay: 0.4s; }
+    section:nth-child(10) { animation-delay: 0.45s; }
     section:last-of-type { border-bottom: none; }
 
     @keyframes fadeUp {
@@ -162,7 +240,7 @@
     .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 30px;
       align-items: center;
     }
 
@@ -170,79 +248,80 @@
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 16px;
     }
     .stat-item {
       background: #141414;
-      padding: 20px 16px;
-      border-radius: 24px;
+      padding: 16px 12px;
+      border-radius: 20px;
       text-align: center;
       border: 1px solid #262626;
       transition: all 0.3s;
     }
     .stat-item:hover { border-color: #facc15; transform: translateY(-4px); }
     .stat-number {
-      font-size: 2.4rem;
+      font-size: 2rem;
       font-weight: 900;
       color: #facc15;
     }
-    .stat-label { color: #a0a0a0; font-weight: 500; font-size: 0.9rem; }
+    .stat-label { color: #a0a0a0; font-weight: 500; font-size: 0.8rem; }
 
-    /* hero social proof */
     .hero-proof {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px 40px;
-      margin: 16px 0 24px;
-      padding: 16px 20px;
+      gap: 12px 24px;
+      margin: 14px 0 20px;
+      padding: 14px 18px;
       background: #141414;
-      border-radius: 20px;
+      border-radius: 18px;
       border: 1px solid #262626;
     }
     .hero-proof-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-weight: 600;
+      font-size: 0.9rem;
     }
-    .hero-proof-item .num { color: #facc15; font-size: 1.3rem; }
+    .hero-proof-item .num { color: #facc15; font-size: 1.1rem; }
 
     /* compare */
     .feature-compare {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 30px;
+      gap: 20px;
       background: #111;
-      border-radius: 32px;
-      padding: 40px;
+      border-radius: 28px;
+      padding: 28px 24px;
       border: 1px solid #262626;
-      margin-top: 24px;
+      margin-top: 20px;
     }
     .compare-col ul {
       list-style: none;
-      margin-top: 16px;
+      margin-top: 12px;
     }
     .compare-col li {
-      padding: 8px 0;
+      padding: 6px 0;
       border-bottom: 1px solid #222;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: baseline;
       font-weight: 400;
+      font-size: 0.9rem;
     }
     .compare-col li::before {
       content: "✕";
       color: #ef4444;
       font-weight: 700;
-      margin-right: 6px;
+      margin-right: 4px;
     }
     .compare-col:last-child {
       background: #141414;
-      border-radius: 24px;
-      padding: 20px;
+      border-radius: 20px;
+      padding: 18px 16px;
       border: 2px solid #facc15;
-      box-shadow: 0 0 30px rgba(250,204,21,0.08);
+      box-shadow: 0 0 30px rgba(250,204,21,0.06);
     }
     .compare-col:last-child li::before {
       content: "✓";
@@ -251,59 +330,58 @@
     .badge-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px 20px;
-      margin: 32px 0 8px;
+      gap: 10px 14px;
+      margin: 24px 0 4px;
     }
     .badge-list span {
       background: #141414;
-      padding: 12px 26px;
+      padding: 10px 18px;
       border-radius: 60px;
       font-weight: 600;
       border: 1px solid #262626;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: #e0e0e0;
     }
 
     /* video cards */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
-      gap: 20px;
-      margin: 24px 0;
+      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+      gap: 16px;
+      margin: 20px 0;
     }
     .video-card {
       background: #141414;
-      border-radius: 20px;
-      padding: 20px 16px;
+      border-radius: 18px;
+      padding: 16px 12px;
       border: 1px solid #262626;
       text-align: center;
       transition: all 0.3s;
     }
     .video-card:hover {
       border-color: #facc15;
-      transform: translateY(-6px) scale(1.02);
+      transform: translateY(-5px) scale(1.02);
     }
-    .video-card .emoji-big { font-size: 2.6rem; margin-bottom: 6px; }
-    .video-card h4 { font-weight: 700; margin-bottom: 4px; }
-    .video-card p { color: #a0a0a0; font-size: 0.9rem; }
+    .video-card .emoji-big { font-size: 2.2rem; margin-bottom: 4px; }
+    .video-card h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 2px; }
+    .video-card p { color: #a0a0a0; font-size: 0.8rem; }
 
     .review-card {
       background: #141414;
-      border-radius: 24px;
-      padding: 28px;
+      border-radius: 20px;
+      padding: 22px 20px;
       border: 1px solid #262626;
       transition: all 0.3s;
-      position: relative;
     }
     .review-card:hover { border-color: #facc15; transform: translateY(-4px); }
-    .review-card .name { font-weight: 700; margin-top: 12px; color: #facc15; }
+    .review-card .name { font-weight: 700; margin-top: 10px; color: #facc15; }
     .review-card .photo {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #2a2a2a;
       display: inline-block;
-      margin-right: 12px;
+      margin-right: 10px;
       vertical-align: middle;
       background-size: cover;
       background-position: center;
@@ -311,27 +389,27 @@
     .review-card .badge {
       background: #facc15;
       color: #0b0b0b;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
       padding: 2px 12px;
       border-radius: 30px;
       display: inline-block;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .price-card {
       background: #0b0b0b;
       border: 2px solid #facc15;
-      border-radius: 40px;
-      padding: 48px 40px;
+      border-radius: 32px;
+      padding: 36px 24px;
       text-align: center;
-      margin-top: 24px;
-      box-shadow: 0 0 50px rgba(250, 204, 21, 0.06);
+      margin-top: 20px;
+      box-shadow: 0 0 50px rgba(250, 204, 21, 0.05);
       transition: 0.3s;
     }
     .price-card:hover { transform: scale(1.01); }
     .price-card .price-big {
-      font-size: 3.4rem;
+      font-size: 2.8rem;
       font-weight: 900;
       color: #facc15;
     }
@@ -339,106 +417,104 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px 28px;
-      margin: 24px 0;
+      gap: 10px 18px;
+      margin: 18px 0;
       font-weight: 500;
+      font-size: 0.85rem;
     }
     .price-features span {
       background: #1a1a1a;
-      padding: 6px 18px;
+      padding: 4px 14px;
       border-radius: 40px;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       border: 1px solid #2a2a2a;
     }
 
     .highlight-box {
       background: #141414;
-      border-left: 6px solid #facc15;
-      border-radius: 24px;
-      padding: 20px 28px;
+      border-left: 5px solid #facc15;
+      border-radius: 20px;
+      padding: 16px 20px;
     }
-    .highlight-box ul { list-style: none; margin-top: 6px; }
-    .highlight-box li { margin: 6px 0; color: #d0d0d0; }
-    .highlight-box li::before { content: "⚡"; margin-right: 10px; color: #facc15; }
+    .highlight-box ul { list-style: none; margin-top: 4px; }
+    .highlight-box li { margin: 4px 0; color: #d0d0d0; font-size: 0.9rem; }
+    .highlight-box li::before { content: "⚡"; margin-right: 8px; color: #facc15; }
 
-    /* recognize */
     .recognize-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
     }
     .recognize-item {
       background: #141414;
-      border-radius: 24px;
-      padding: 28px 24px;
+      border-radius: 20px;
+      padding: 20px 18px;
       border: 1px solid #262626;
       transition: 0.3s;
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 14px;
     }
     .recognize-item:hover { border-color: #facc15; transform: translateY(-4px); }
-    .recognize-item .icon { font-size: 2.6rem; flex-shrink: 0; }
-    .recognize-item h4 { font-weight: 700; margin-bottom: 4px; }
-    .recognize-item p { color: #a0a0a0; font-size: 0.95rem; }
+    .recognize-item .icon { font-size: 2.2rem; flex-shrink: 0; }
+    .recognize-item h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 2px; }
+    .recognize-item p { color: #a0a0a0; font-size: 0.85rem; }
 
-    /* free lesson */
     .free-lesson {
       background: #141414;
-      border-radius: 32px;
-      padding: 48px 40px;
+      border-radius: 28px;
+      padding: 32px 24px;
       border: 2px solid #facc15;
       display: grid;
       grid-template-columns: 2fr 1fr;
-      gap: 40px;
+      gap: 30px;
       align-items: center;
-      margin-top: 16px;
+      margin-top: 12px;
       transition: 0.3s;
     }
     .free-lesson:hover { transform: scale(1.01); }
-    .free-lesson h3 { font-size: 1.8rem; font-weight: 800; }
-    .free-lesson p { color: #b0b0b0; margin: 12px 0 20px; font-size: 1.05rem; }
+    .free-lesson h3 { font-size: 1.5rem; font-weight: 800; }
+    .free-lesson p { color: #b0b0b0; margin: 10px 0 16px; font-size: 0.95rem; }
     .free-lesson .video-preview {
       background: #0b0b0b;
-      border-radius: 20px;
-      padding: 30px 20px;
+      border-radius: 18px;
+      padding: 24px 16px;
       text-align: center;
       border: 1px solid #2a2a2a;
     }
-    .free-lesson .video-preview .play-icon { font-size: 3.6rem; display: block; margin-bottom: 8px; }
+    .free-lesson .video-preview .play-icon { font-size: 3rem; display: block; margin-bottom: 6px; }
 
-    /* how to get */
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 16px;
+      gap: 16px;
+      margin-top: 12px;
     }
     .step-item {
       background: #141414;
-      border-radius: 24px;
-      padding: 28px 20px;
+      border-radius: 20px;
+      padding: 20px 16px;
       text-align: center;
       border: 1px solid #262626;
       transition: 0.3s;
     }
     .step-item:hover { border-color: #facc15; transform: translateY(-4px); }
     .step-item .step-num {
-      font-size: 2.6rem;
+      font-size: 2.2rem;
       font-weight: 900;
       color: #facc15;
     }
-    .step-item h4 { margin: 12px 0 6px; }
+    .step-item h4 { margin: 8px 0 4px; font-size: 0.95rem; }
+    .step-item p { color: #a0a0a0; font-size: 0.8rem; }
 
-    /* mobile fixed button */
     .mobile-fixed-btn {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       background: #0b0b0b;
-      padding: 12px 20px;
+      padding: 10px 16px;
       border-top: 2px solid #facc15;
       display: none;
       justify-content: center;
@@ -447,107 +523,153 @@
     .mobile-fixed-btn .btn-primary {
       width: 100%;
       text-align: center;
-      padding: 16px;
-      font-size: 1.1rem;
+      padding: 14px;
+      font-size: 1rem;
     }
 
     .footer-note {
       text-align: center;
-      padding: 30px 0;
+      padding: 24px 0;
       color: #6b7280;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       border-top: 1px solid #1f1f1f;
     }
 
-    /* responsive */
-    @media (max-width: 768px) {
-      .grid-2col { grid-template-columns: 1fr; }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .grid-2col { grid-template-columns: 1fr; gap: 24px; }
       .feature-compare { grid-template-columns: 1fr; }
-      .stat-grid { grid-template-columns: 1fr 1fr; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
-      .navbar .container { flex-direction: column; align-items: stretch; }
-      .nav-links { justify-content: center; }
-      .logo { justify-content: center; }
       .free-lesson { grid-template-columns: 1fr; text-align: center; }
       .free-lesson .video-preview { order: -1; }
+      .burger { display: flex; }
+      .nav-links { display: none; }
       .mobile-fixed-btn { display: flex; }
-      body { padding-bottom: 90px; }
+      body { padding-bottom: 80px; }
+      section { padding: 40px 0; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
       .hero-proof { justify-content: center; }
     }
-    @media (max-width: 480px) {
-      .steps-grid { grid-template-columns: 1fr; }
+
+    @media (max-width: 600px) {
       .stat-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .recognize-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr 1fr; }
+      .price-card { padding: 28px 16px; }
+      .price-card .price-big { font-size: 2.2rem; }
+      .container { padding: 0 14px; }
+      .btn-primary { padding: 14px 24px; font-size: 0.9rem; }
+      .btn-outline { padding: 12px 20px; font-size: 0.85rem; }
+      .feature-compare { padding: 20px 16px; }
+      .free-lesson { padding: 24px 16px; }
+      .free-lesson h3 { font-size: 1.2rem; }
+      .mobile-menu a { font-size: 1.1rem; padding: 10px 0; }
+      .logo { font-size: 1.2rem; }
+      .logo .emoji { font-size: 1.3rem; }
+    }
+
+    @media (max-width: 400px) {
+      .video-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .video-card { padding: 12px 8px; }
+      .video-card .emoji-big { font-size: 1.8rem; }
+      .video-card h4 { font-size: 0.8rem; }
+      .video-card p { font-size: 0.7rem; }
+      .stat-item { padding: 12px 8px; }
+      .stat-number { font-size: 1.5rem; }
+      .stat-label { font-size: 0.7rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- ===== NAVBAR ===== -->
 <nav class="navbar">
   <div class="container">
-    <div class="logo">🚦 ПДД <span>2026</span></div>
+    <button class="burger" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">
+      <span class="emoji">🚦</span>
+      <span class="mark-text">Mark</span>
+      <span class="pdd-text">ПДД</span>
+      <span class="year">2026</span>
+    </div>
     <div class="nav-links">
       <a href="#hero">Главная</a>
       <a href="#uznaesh">Узнаешь себя?</a>
       <a href="#sravnenie">Сравнение</a>
       <a href="#prepod">Преподаватель</a>
       <a href="#obuchenie">Обучение</a>
-      <a href="#free-lesson">Бесплатный урок</a>
+      <a href="#free-lesson">Бесплатно</a>
       <a href="#otzyvy">Отзывы</a>
       <a href="#dostup">Доступ</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero" style="padding-top: 40px; padding-bottom: 30px; animation-delay:0s;">
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" id="closeMenuBtn">✕</button>
+  <a href="#hero" class="mobile-link">Главная</a>
+  <a href="#uznaesh" class="mobile-link">Узнаешь себя?</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение</a>
+  <a href="#prepod" class="mobile-link">Преподаватель</a>
+  <a href="#obuchenie" class="mobile-link">Обучение</a>
+  <a href="#free-lesson" class="mobile-link">Бесплатный урок</a>
+  <a href="#otzyvy" class="mobile-link">Отзывы</a>
+  <a href="#dostup" class="mobile-link">Доступ</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero" style="padding-top: 30px; padding-bottom: 20px; animation-delay:0s;">
   <div class="container">
     <div class="tag">⚡ главный курс ПДД 2026</div>
     <div class="grid-2col">
       <div>
         <h1>Перестань зубрить билеты.<br>Начни <span style="color: #facc15;">понимать</span> ПДД</h1>
-        <p class="subhead" style="margin: 16px 0 20px;">Каждый экзаменационный вопрос — на реальной дорожной ситуации. Никакой зубрёжки, только логика и практика.</p>
+        <p class="subhead" style="margin: 14px 0 16px;">Каждый экзаменационный вопрос — на реальной дорожной ситуации. Никакой зубрёжки, только логика и практика.</p>
         
         <div class="hero-proof">
-          <span class="hero-proof-item"><span class="num">12 847</span> учеников уже учатся</span>
+          <span class="hero-proof-item"><span class="num">12 847</span> учеников</span>
           <span class="hero-proof-item"><span class="num">97%</span> сдают с 1 раза</span>
-          <span class="hero-proof-item"><span class="num">4.9/5</span> средний рейтинг</span>
+          <span class="hero-proof-item"><span class="num">4.9/5</span> рейтинг</span>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
           <a href="#dostup" class="btn-primary">Начать учиться</a>
-          <span style="background: #1a1a1a; padding: 12px 24px; border-radius: 40px; font-weight: 600; border: 1px solid #2a2a2a; display: flex; align-items: center;">📱 24/7 с любого устройства</span>
+          <span style="background: #1a1a1a; padding: 10px 18px; border-radius: 40px; font-weight: 600; border: 1px solid #2a2a2a; display: flex; align-items: center; font-size:0.85rem;">📱 24/7</span>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
         <div class="stat-grid" style="margin-top: 0;">
           <div class="stat-item"><div class="stat-number">800+</div><div class="stat-label">видеоуроков</div></div>
           <div class="stat-item"><div class="stat-number">40+</div><div class="stat-label">часов контента</div></div>
           <div class="stat-item"><div class="stat-number">2026</div><div class="stat-label">актуальные билеты</div></div>
         </div>
         <div class="highlight-box">
-          <p style="font-weight: 700; color: #facc15; font-size: 1.05rem;">🔥 Знакомо?</p>
+          <p style="font-weight: 700; color: #facc15; font-size: 0.95rem;">🔥 Знакомо?</p>
           <ul>
             <li>Не можешь запомнить билеты — быстро забываешь</li>
             <li>Теряешься на перекрёстках — не понимаешь приоритет</li>
             <li>Не видишь логику вопроса — не знаешь, почему ответ правильный</li>
           </ul>
-          <p style="font-weight: 700; margin-top: 12px; color: #f0f0f0;">Этот курс решает эти проблемы — раз и навсегда.</p>
+          <p style="font-weight: 700; margin-top: 8px; color: #f0f0f0; font-size:0.9rem;">Этот курс решает эти проблемы — раз и навсегда.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- УЗНАЕШЬ СЕБЯ? -->
+<!-- ===== УЗНАЕШЬ СЕБЯ? ===== -->
 <section id="uznaesh">
   <div class="container">
     <h2>Узнаешь <span class="highlight">себя?</span></h2>
-    <p style="text-align: center; color: #b0b0b0; max-width: 700px; margin: -8px auto 32px; font-size: 1.1rem;">Вот типичные ситуации, с которыми сталкиваются почти все ученики.</p>
+    <p style="text-align: center; color: #b0b0b0; max-width: 700px; margin: -6px auto 24px; font-size: 1rem;">Вот типичные ситуации, с которыми сталкиваются почти все ученики.</p>
     <div class="recognize-grid">
       <div class="recognize-item">
         <span class="icon">🧠</span>
-        <div><h4>«Вроде выучил, но на экзамене пустота»</h4><p>Ты знаешь ответ, но когда видишь вопрос — ступор. Знакомо?</p></div>
+        <div><h4>«Вроде выучил, но на экзамене пустота»</h4><p>Ты знаешь ответ, но когда видишь вопрос — ступор.</p></div>
       </div>
       <div class="recognize-item">
         <span class="icon">🚦</span>
@@ -565,13 +687,13 @@
   </div>
 </section>
 
-<!-- СРАВНЕНИЕ -->
+<!-- ===== СРАВНЕНИЕ ===== -->
 <section id="sravnenie">
   <div class="container">
     <h2>Почему этот курс <span class="highlight">лучше</span> обычной подготовки?</h2>
     <div class="feature-compare">
       <div class="compare-col">
-        <h3 style="color: #a0a0a0;">Обычная подготовка</h3>
+        <h3 style="color: #a0a0a0; font-size:1.1rem;">Обычная подготовка</h3>
         <ul>
           <li>Зубрёжка билетов и ответов</li>
           <li>Длинные лекции, сложные термины</li>
@@ -580,204 +702,231 @@
         </ul>
       </div>
       <div class="compare-col">
-        <h3 style="color: #facc15;">Этот курс</h3>
+        <h3 style="color: #facc15; font-size:1.1rem;">Этот курс</h3>
         <ul>
           <li>Каждый вопрос — короткое видео на реальной дороге</li>
           <li>Разбор ситуаций, а не сухая теория</li>
           <li>Объяснение логики правил</li>
           <li>Знания остаются на всю жизнь</li>
         </ul>
-        <div style="margin-top: 16px; background: #facc15; color: #0b0b0b; border-radius: 40px; padding: 12px 16px; text-align: center; font-weight: 800;">В нашем курсе всё становится понятным</div>
+        <div style="margin-top: 12px; background: #facc15; color: #0b0b0b; border-radius: 40px; padding: 10px 14px; text-align: center; font-weight: 800; font-size:0.9rem;">В нашем курсе всё становится понятным</div>
       </div>
     </div>
     <div class="badge-list">
       <span>📹 800+ видеороликов</span>
-      <span>⏳ 40+ часов контента</span>
+      <span>⏳ 40+ часов</span>
       <span>📅 100% актуальность на 2026</span>
-      <span>📱 24/7 с любого устройства</span>
+      <span>📱 24/7</span>
     </div>
   </div>
 </section>
 
-<!-- ПРЕПОДАВАТЕЛЬ -->
+<!-- ===== ПРЕПОДАВАТЕЛЬ ===== -->
 <section id="prepod">
   <div class="container">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
       <div>
         <span class="tag">👨‍🏫 Преподаватель</span>
-        <h2 style="text-align: left; margin-bottom: 8px;">Привет! Я — <span class="highlight">Марк Лебедев</span></h2>
-        <p style="font-size: 1.1rem; color: #d0d0d0;">Преподаватель ПДД более 7 лет. Помогаю тысячам учеников не просто сдать экзамен, а действительно понять правила и чувствовать себя уверенно на дороге.</p>
-        <p style="color: #b0b0b0; margin-top: 12px;">Я создал этот курс, потому что сам прошёл через зубрёжку и понял: главное — не запомнить ответ, а понять логику. Каждый урок снимаю на реальных дорогах, чтобы вы видели ситуации такими, какие они есть на самом деле.</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 28px 0;">
-          <div><span style="font-weight: 800; font-size: 1.8rem; color: #facc15;">7 лет</span><br><span style="color: #a0a0a0;">опыта</span></div>
-          <div><span style="font-weight: 800; font-size: 1.8rem; color: #facc15;">100%</span><br><span style="color: #a0a0a0;">успешность</span></div>
-          <div><span style="font-weight: 800; font-size: 1.8rem; color: #facc15;">97%</span><br><span style="color: #a0a0a0;">сдали с 1 раза</span></div>
+        <h2 style="text-align: left; margin-bottom: 6px;">Привет! Я — <span class="highlight">Марк Лебедев</span></h2>
+        <p style="font-size: 1rem; color: #d0d0d0;">Преподаватель ПДД более 7 лет. Помогаю тысячам учеников не просто сдать экзамен, а действительно понять правила и чувствовать себя уверенно на дороге.</p>
+        <p style="color: #b0b0b0; margin-top: 10px; font-size:0.9rem;">Я создал этот курс, потому что сам прошёл через зубрёжку и понял: главное — не запомнить ответ, а понять логику. Каждый урок снимаю на реальных дорогах, чтобы вы видели ситуации такими, какие они есть на самом деле.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+          <div><span style="font-weight: 800; font-size: 1.5rem; color: #facc15;">7 лет</span><br><span style="color: #a0a0a0; font-size:0.8rem;">опыта</span></div>
+          <div><span style="font-weight: 800; font-size: 1.5rem; color: #facc15;">100%</span><br><span style="color: #a0a0a0; font-size:0.8rem;">успешность</span></div>
+          <div><span style="font-weight: 800; font-size: 1.5rem; color: #facc15;">97%</span><br><span style="color: #a0a0a0; font-size:0.8rem;">сдали с 1 раза</span></div>
         </div>
-        <ul style="list-style: none; background: #141414; padding: 20px 24px; border-radius: 24px; border: 1px solid #262626;">
-          <li style="padding: 4px 0;">✔ Действующий преподаватель и инструктор</li>
-          <li style="padding: 4px 0;">✔ Тысячи реальных отзывов учеников</li>
-          <li style="padding: 4px 0;">✔ Простой и понятный язык общения</li>
-          <li style="padding: 4px 0;">✔ Снимаю уроки на реальных дорогах</li>
-          <li style="padding: 4px 0;">✔ Поддержка и психология в обучении</li>
+        <ul style="list-style: none; background: #141414; padding: 16px 20px; border-radius: 20px; border: 1px solid #262626;">
+          <li style="padding: 3px 0; font-size:0.85rem;">✔ Действующий преподаватель и инструктор</li>
+          <li style="padding: 3px 0; font-size:0.85rem;">✔ Тысячи реальных отзывов учеников</li>
+          <li style="padding: 3px 0; font-size:0.85rem;">✔ Простой и понятный язык общения</li>
+          <li style="padding: 3px 0; font-size:0.85rem;">✔ Снимаю уроки на реальных дорогах</li>
+          <li style="padding: 3px 0; font-size:0.85rem;">✔ Поддержка и психология в обучении</li>
         </ul>
       </div>
-      <div style="background: #141414; border-radius: 40px; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 6rem; border: 2px solid #facc15; flex-direction: column; gap: 8px;">
+      <div style="background: #141414; border-radius: 32px; height: 260px; display: flex; align-items: center; justify-content: center; font-size: 5rem; border: 2px solid #facc15; flex-direction: column; gap: 4px;">
         <span>🧑‍🏫</span>
-        <span style="font-size: 0.9rem; color: #a0a0a0;">Марк Лебедев</span>
+        <span style="font-size: 0.8rem; color: #a0a0a0;">Марк Лебедев</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- КАК ВЫГЛЯДИТ ОБУЧЕНИЕ -->
+<!-- ===== КАК ВЫГЛЯДИТ ОБУЧЕНИЕ ===== -->
 <section id="obuchenie">
   <div class="container">
     <h2>Как выглядит <span class="highlight">обучение</span></h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 30px;">
-      <div style="background: #141414; border-radius: 28px; padding: 28px; border:1px solid #262626; transition: all 0.3s;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
-        <span style="font-size: 2.6rem;">📁</span><h3 style="margin: 12px 0 8px;">Личный кабинет</h3><p style="color: #a0a0a0;">Отслеживай прогресс, проходи темы, смотри статистику.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 20px;">
+      <div style="background: #141414; border-radius: 24px; padding: 22px 16px; border:1px solid #262626; transition: all 0.3s; text-align:center;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
+        <span style="font-size: 2.4rem;">📁</span><h3 style="margin: 10px 0 4px; font-size:1rem;">Личный кабинет</h3><p style="color: #a0a0a0; font-size:0.85rem;">Отслеживай прогресс</p>
       </div>
-      <div style="background: #141414; border-radius: 28px; padding: 28px; border:1px solid #262626; transition: all 0.3s;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
-        <span style="font-size: 2.6rem;">🎬</span><h3 style="margin: 12px 0 8px;">Короткие видео</h3><p style="color: #a0a0a0;">Каждый вопрос — отдельный ролик на реальных ситуациях.</p>
+      <div style="background: #141414; border-radius: 24px; padding: 22px 16px; border:1px solid #262626; transition: all 0.3s; text-align:center;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
+        <span style="font-size: 2.4rem;">🎬</span><h3 style="margin: 10px 0 4px; font-size:1rem;">Короткие видео</h3><p style="color: #a0a0a0; font-size:0.85rem;">Каждый вопрос — ролик</p>
       </div>
-      <div style="background: #141414; border-radius: 28px; padding: 28px; border:1px solid #262626; transition: all 0.3s;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
-        <span style="font-size: 2.6rem;">🧪</span><h3 style="margin: 12px 0 8px;">Тесты по темам</h3><p style="color: #a0a0a0;">Закрепляй знания и работай над ошибками.</p>
+      <div style="background: #141414; border-radius: 24px; padding: 22px 16px; border:1px solid #262626; transition: all 0.3s; text-align:center;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
+        <span style="font-size: 2.4rem;">🧪</span><h3 style="margin: 10px 0 4px; font-size:1rem;">Тесты по темам</h3><p style="color: #a0a0a0; font-size:0.85rem;">Закрепляй знания</p>
       </div>
-      <div style="background: #141414; border-radius: 28px; padding: 28px; border:1px solid #262626; transition: all 0.3s;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-6px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
-        <span style="font-size: 2.6rem;">📱</span><h3 style="margin: 12px 0 8px;">Мобильная версия</h3><p style="color: #a0a0a0;">Учись где угодно — телефон, планшет, ноутбук.</p>
+      <div style="background: #141414; border-radius: 24px; padding: 22px 16px; border:1px solid #262626; transition: all 0.3s; text-align:center;" onmouseover="this.style.borderColor='#facc15';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='#262626';this.style.transform='translateY(0)'">
+        <span style="font-size: 2.4rem;">📱</span><h3 style="margin: 10px 0 4px; font-size:1rem;">Мобильная версия</h3><p style="color: #a0a0a0; font-size:0.85rem;">Учись где угодно</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ЧТО ВХОДИТ В КУРС -->
+<!-- ===== ЧТО ВХОДИТ В КУРС ===== -->
 <section id="kurs">
   <div class="container">
     <h2>Что входит в <span class="highlight">курс?</span></h2>
     <div class="grid-2col">
       <div>
         <div class="video-grid">
-          <div class="video-card"><span class="emoji-big">🚦</span><h4>Перекрёстки</h4><p>Все виды, приоритет, сложные кейсы</p></div>
-          <div class="video-card"><span class="emoji-big">🛑</span><h4>Дорожные знаки</h4><p>Как правильно и как не правильно</p></div>
-          <div class="video-card"><span class="emoji-big">🛣️</span><h4>Разметка</h4><p>Маневры, развороты, парковка</p></div>
-          <div class="video-card"><span class="emoji-big">⚠️</span><h4>Сложные ситуации</h4><p>800+ уроков, включая экзамены</p></div>
-          <div class="video-card"><span class="emoji-big">📘</span><h4>Билеты ПДД</h4><p>Каждый билет — 6 подразделов</p></div>
+          <div class="video-card"><span class="emoji-big">🚦</span><h4>Перекрёстки</h4><p>Все виды, приоритет</p></div>
+          <div class="video-card"><span class="emoji-big">🛑</span><h4>Дорожные знаки</h4><p>Как правильно</p></div>
+          <div class="video-card"><span class="emoji-big">🛣️</span><h4>Разметка</h4><p>Маневры, парковка</p></div>
+          <div class="video-card"><span class="emoji-big">⚠️</span><h4>Сложные ситуации</h4><p>800+ уроков</p></div>
+          <div class="video-card"><span class="emoji-big">📘</span><h4>Билеты ПДД</h4><p>6 подразделов</p></div>
         </div>
       </div>
-      <div style="background: #141414; border-radius: 32px; padding: 30px; border: 1px solid #262626;">
-        <h3 style="display: flex; gap: 12px; color: #facc15;">🧩 Каждый урок</h3>
-        <ul style="list-style: none; margin-top: 16px;">
-          <li style="background: #0b0b0b; padding: 12px 18px; border-radius: 40px; margin: 8px 0; border: 1px solid #262626;">✅ Разбор реальной дорожной ситуации</li>
-          <li style="background: #0b0b0b; padding: 12px 18px; border-radius: 40px; margin: 8px 0; border: 1px solid #262626;">✅ Пошаговое решение</li>
-          <li style="background: #0b0b0b; padding: 12px 18px; border-radius: 40px; margin: 8px 0; border: 1px solid #262626;">✅ Объяснение простым языком</li>
-          <li style="background: #0b0b0b; padding: 12px 18px; border-radius: 40px; margin: 8px 0; border: 1px solid #262626;">✅ Закрепление тестами</li>
+      <div style="background: #141414; border-radius: 28px; padding: 24px 20px; border: 1px solid #262626;">
+        <h3 style="display: flex; gap: 10px; color: #facc15; font-size:1.2rem;">🧩 Каждый урок</h3>
+        <ul style="list-style: none; margin-top: 12px;">
+          <li style="background: #0b0b0b; padding: 10px 14px; border-radius: 40px; margin: 6px 0; border: 1px solid #262626; font-size:0.85rem;">✅ Разбор реальной дорожной ситуации</li>
+          <li style="background: #0b0b0b; padding: 10px 14px; border-radius: 40px; margin: 6px 0; border: 1px solid #262626; font-size:0.85rem;">✅ Пошаговое решение</li>
+          <li style="background: #0b0b0b; padding: 10px 14px; border-radius: 40px; margin: 6px 0; border: 1px solid #262626; font-size:0.85rem;">✅ Объяснение простым языком</li>
+          <li style="background: #0b0b0b; padding: 10px 14px; border-radius: 40px; margin: 6px 0; border: 1px solid #262626; font-size:0.85rem;">✅ Закрепление тестами</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- БЕСПЛАТНЫЙ УРОК -->
+<!-- ===== БЕСПЛАТНЫЙ УРОК ===== -->
 <section id="free-lesson">
   <div class="container">
     <h2>Попробуй <span class="highlight">бесплатно</span></h2>
-    <p style="text-align: center; color: #b0b0b0; max-width: 600px; margin: -8px auto 24px; font-size: 1.05rem;">Получи полноценный урок с разбором реальной ситуации — без оплаты и регистрации.</p>
+    <p style="text-align: center; color: #b0b0b0; max-width: 600px; margin: -6px auto 20px; font-size:0.95rem;">Получи полноценный урок с разбором реальной ситуации — без оплаты и регистрации.</p>
     <div class="free-lesson">
       <div>
         <h3>🎬 «Перекрёсток: кто главный?»</h3>
         <p>Разбираем самый частый источник ошибок. Ты увидишь, как работает логика ПДД на практике, и запомнишь это навсегда.</p>
-        <a href="#" class="btn-primary">Смотреть бесплатный урок</a>
+        <a href="#" class="btn-primary" style="padding: 12px 28px; font-size:0.9rem;">Смотреть бесплатный урок</a>
       </div>
       <div class="video-preview">
         <span class="play-icon">▶️</span>
-        <span>5 минут • реальная ситуация</span>
+        <span style="font-size:0.8rem;">5 минут • реальная ситуация</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ОТЗЫВЫ -->
+<!-- ===== ОТЗЫВЫ ===== -->
 <section id="otzyvy">
   <div class="container">
     <h2>Отзывы <span class="highlight">учеников</span></h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 30px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px;">
       <div class="review-card">
-        <div><span class="photo" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%2224%22 fill=%22%23333%22/%3E%3Ccircle cx=%2224%22 cy=%2218%22 r=%228%22 fill=%22%23666%22/%3E%3Cpath d=%22M8 40c0-8 16-12 16-12s16 4 16 12%22 fill=%22%23666%22/%3E%3C/svg%3E');"></span><span style="font-weight:700;">Ольга</span></div>
-        <p style="margin-top: 12px;">«Я всегда боялась перекрёстков, но после курса Марка всё стало на свои места. Сдала с первого раза!»</p>
+        <div><span class="photo" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22 viewBox=%220 0 44 44%22%3E%3Ccircle cx=%2222%22 cy=%2222%22 r=%2222%22 fill=%22%23333%22/%3E%3Ccircle cx=%2222%22 cy=%2216%22 r=%227%22 fill=%22%23666%22/%3E%3Cpath d=%22M6 36c0-7 16-11 16-11s16 4 16 11%22 fill=%22%23666%22/%3E%3C/svg%3E');"></span><span style="font-weight:700;">Ольга</span></div>
+        <p style="margin-top: 10px; font-size:0.9rem;">«Я всегда боялась перекрёстков, но после курса Марка всё стало на свои места. Сдала с первого раза!»</p>
         <span class="badge">✅ сдала с 1 раза</span>
       </div>
       <div class="review-card">
-        <div><span class="photo" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%2224%22 fill=%22%23333%22/%3E%3Ccircle cx=%2224%22 cy=%2218%22 r=%228%22 fill=%22%23666%22/%3E%3Cpath d=%22M8 40c0-8 16-12 16-12s16 4 16 12%22 fill=%22%23666%22/%3E%3C/svg%3E');"></span><span style="font-weight:700;">Александр</span></div>
-        <p style="margin-top: 12px;">«Раньше просто зубрил, а теперь понимаю логику. Спасибо за чёткие объяснения!»</p>
+        <div><span class="photo" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22 viewBox=%220 0 44 44%22%3E%3Ccircle cx=%2222%22 cy=%2222%22 r=%2222%22 fill=%22%23333%22/%3E%3Ccircle cx=%2222%22 cy=%2216%22 r=%227%22 fill=%22%23666%22/%3E%3Cpath d=%22M6 36c0-7 16-11 16-11s16 4 16 11%22 fill=%22%23666%22/%3E%3C/svg%3E');"></span><span style="font-weight:700;">Александр</span></div>
+        <p style="margin-top: 10px; font-size:0.9rem;">«Раньше просто зубрил, а теперь понимаю логику. Спасибо за чёткие объяснения!»</p>
         <span class="badge">✅ права получил</span>
       </div>
       <div class="review-card">
-        <div><span class="photo" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%2224%22 fill=%22%23333%22/%3E%3Ccircle cx=%2224%22 cy=%2218%22 r=%228%22 fill=%22%23666%22/%3E%3Cpath d=%22M8 40c0-8 16-12 16-12s16 4 16 12%22 fill=%22%23666%22/%3E%3C/svg%3E');"></span><span style="font-weight:700;">Сергей</span></div>
-        <p style="margin-top: 12px;">«Марк объясняет лучше любого учебника. Коротко, ясно, по делу. Рекомендую всем.»</p>
+        <div><span class="photo" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22 viewBox=%220 0 44 44%22%3E%3Ccircle cx=%2222%22 cy=%2222%22 r=%2222%22 fill=%22%23333%22/%3E%3Ccircle cx=%2222%22 cy=%2216%22 r=%227%22 fill=%22%23666%22/%3E%3Cpath d=%22M6 36c0-7 16-11 16-11s16 4 16 11%22 fill=%22%23666%22/%3E%3C/svg%3E');"></span><span style="font-weight:700;">Сергей</span></div>
+        <p style="margin-top: 10px; font-size:0.9rem;">«Марк объясняет лучше любого учебника. Коротко, ясно, по делу. Рекомендую всем.»</p>
         <span class="badge">⭐ 5/5</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- КАК ПОЛУЧИТЬ ДОСТУП -->
+<!-- ===== КАК ПОЛУЧИТЬ ДОСТУП ===== -->
 <section id="how-to-get">
   <div class="container">
     <h2>Как получить <span class="highlight">доступ?</span></h2>
     <div class="steps-grid">
-      <div class="step-item"><div class="step-num">1</div><h4>Оплата</h4><p style="color:#a0a0a0;">Выберите тариф и оплатите удобным способом</p></div>
-      <div class="step-item"><div class="step-num">2</div><h4>Доступ автоматически</h4><p style="color:#a0a0a0;">Ссылка и логин приходят на почту мгновенно</p></div>
-      <div class="step-item"><div class="step-num">3</div><h4>Начинайте обучение</h4><p style="color:#a0a0a0;">Смотрите видео, проходите тесты, разбирайте ситуации</p></div>
-      <div class="step-item"><div class="step-num">4</div><h4>Сдаёте экзамен</h4><p style="color:#a0a0a0;">Уверенно отвечаете на любые вопросы и получаете права</p></div>
+      <div class="step-item"><div class="step-num">1</div><h4>Оплата</h4><p style="color:#a0a0a0; font-size:0.8rem;">Выберите тариф и оплатите</p></div>
+      <div class="step-item"><div class="step-num">2</div><h4>Доступ автоматически</h4><p style="color:#a0a0a0; font-size:0.8rem;">Ссылка и логин на почту</p></div>
+      <div class="step-item"><div class="step-num">3</div><h4>Начинайте обучение</h4><p style="color:#a0a0a0; font-size:0.8rem;">Смотрите видео, проходите тесты</p></div>
+      <div class="step-item"><div class="step-num">4</div><h4>Сдаёте экзамен</h4><p style="color:#a0a0a0; font-size:0.8rem;">Уверенно и без страха</p></div>
     </div>
   </div>
 </section>
 
-<!-- ДОСТУП / ЦЕНА -->
+<!-- ===== ДОСТУП / ЦЕНА ===== -->
 <section id="dostup">
   <div class="container">
     <div class="price-card">
       <span class="tag" style="background: #facc15; color: #0b0b0b;">⭐ Полный доступ</span>
-      <h2 style="color: #f0f0f0; text-align: center; margin-top: 6px;">Ко всему курсу</h2>
+      <h2 style="color: #f0f0f0; text-align: center; margin-top: 4px; font-size:1.6rem;">Ко всему курсу</h2>
       <div class="price-features">
-        <span>🎥 800+ видеоуроков</span>
-        <span>🔄 Все обновления бесплатно</span>
-        <span>📱 Доступ на всех устройствах</span>
-        <span>📺 Смотреть в любое время</span>
-        <span>🛟 Поддержка 24/7</span>
-        <span>🎁 Бонусы и подарки</span>
+        <span>🎥 800+ видео</span>
+        <span>🔄 Обновления</span>
+        <span>📱 Все устройства</span>
         <span>♾️ Доступ навсегда</span>
-        <span>🛡️ Гарантия результата</span>
+        <span>🛡️ Гарантия</span>
+        <span>🛟 Поддержка</span>
       </div>
-      <div style="margin-top: 20px;">
-        <span class="price-big">₽3 490</span> <span style="color: #b0b0b0;">/ весь курс</span>
+      <div style="margin-top: 14px;">
+        <span class="price-big">₽3 490</span> <span style="color: #b0b0b0; font-size:0.9rem;">/ весь курс</span>
       </div>
-      <p style="color: #b0b0b0; margin-top: 12px;">После оплаты вы получаете полный доступ ко всем материалам. Без скрытых платежей.</p>
-      <a href="#" class="btn-primary" style="background: #facc15; color: #0b0b0b; box-shadow: 0 12px 28px rgba(250,204,21,0.25); margin-top: 24px; display: inline-block;">Начать понимать ПДД</a>
+      <p style="color: #b0b0b0; margin-top: 8px; font-size:0.85rem;">После оплаты вы получаете полный доступ ко всем материалам. Без скрытых платежей.</p>
+      <a href="#" class="btn-primary" style="background: #facc15; color: #0b0b0b; box-shadow: 0 12px 28px rgba(250,204,21,0.25); margin-top: 18px; display: inline-block;">Начать понимать ПДД</a>
     </div>
   </div>
 </section>
 
-<!-- ФИНАЛЬНЫЙ ЭКРАН -->
-<section style="padding: 50px 0; background: #0b0b0b; border-bottom: none;">
+<!-- ===== ФИНАЛЬНЫЙ ЭКРАН ===== -->
+<section style="padding: 40px 0; background: #0b0b0b; border-bottom: none;">
   <div class="container" style="text-align: center;">
-    <h2 style="margin-bottom: 8px;">Начните понимать ПДД <span class="highlight">уже сегодня</span></h2>
-    <p style="font-size: 1.1rem; color: #b0b0b0; max-width: 600px; margin: 0 auto 20px;">800+ видеоуроков • 97% успешной сдачи • 12 847 учеников</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
-      <a href="#dostup" class="btn-primary">Получить доступ</a>
-      <a href="#free-lesson" class="btn-outline">📬 Попробовать бесплатно</a>
+    <h2 style="margin-bottom: 6px; font-size:1.8rem;">Начните понимать ПДД <span class="highlight">уже сегодня</span></h2>
+    <p style="font-size: 0.95rem; color: #b0b0b0; max-width: 500px; margin: 0 auto 16px;">800+ видеоуроков • 97% успешной сдачи • 12 847 учеников</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+      <a href="#dostup" class="btn-primary" style="padding: 14px 30px; font-size:0.95rem;">Получить доступ</a>
+      <a href="#free-lesson" class="btn-outline" style="padding: 12px 24px; font-size:0.85rem;">📬 Попробовать бесплатно</a>
     </div>
   </div>
 </section>
 
-<!-- MOBILE FIXED BUTTON -->
+<!-- ===== MOBILE FIXED BUTTON ===== -->
 <div class="mobile-fixed-btn">
   <a href="#dostup" class="btn-primary">🚦 Начать обучение</a>
 </div>
 
 <div class="footer-note container">
-  <p>© 2026 ПДД с Марком Лебедевым. Все права защищены. 800+ видео, 40+ часов, 97% успеваемости.</p>
+  <p>© 2026 🚦 Mark ПДД — курс Марка Лебедева. 800+ видео, 40+ часов, 97% успеваемости.</p>
 </div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeBtn = document.getElementById('closeMenuBtn');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  function toggleMenu() {
+    mobileMenu.classList.toggle('open');
+    burger.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  }
+
+  burger.addEventListener('click', toggleMenu);
+  closeBtn.addEventListener('click', toggleMenu);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('open')) toggleMenu();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !burger.contains(e.target)) {
+      toggleMenu();
+    }
+  });
+</script>
 
 </body>
 </html>
